@@ -2,6 +2,10 @@
 
 A browser-based file system application built with **Next.js**, **React**, **TypeScript**, and **Tailwind CSS**. Users can manage files and directories within an intuitive, responsive UI — no server required.
 
+<img width="881" height="350" alt="Screenshot 2026-03-29 at 1 39 58 PM" src="https://github.com/user-attachments/assets/670e7314-fb09-43cc-8bf7-6408b7e7f3b7" />
+
+**Live demo →** [https://bosta-senior-assessment.vercel.app/](https://bosta-senior-assessment.vercel.app/)
+
 ## Features
 
 ### File Navigation
