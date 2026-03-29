@@ -1,36 +1,107 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# React File System Builder
+
+A browser-based file system application built with **Next.js**, **React**, **TypeScript**, and **Tailwind CSS**. Users can manage files and directories within an intuitive, responsive UI — no server required.
+
+## Features
+
+### File Navigation
+- **Sidebar Tree View** — Hierarchical folder navigation with expand/collapse
+- **Breadcrumb Trail** — Click any ancestor folder to jump back
+- **Double-click** folders in the grid to navigate into them
+
+### File Management
+- **Create** files and folders via the toolbar
+- **Rename** via context menu, toolbar, or F2 keyboard shortcut
+- **Delete** with confirmation dialog to prevent accidental loss
+- **Copy / Cut / Paste** — supports deep folder cloning
+- **Inline File Editor** — select a file to view/edit its content in a side panel
+
+### Responsive Design
+- Collapsible sidebar that slides in on mobile via hamburger menu
+- Adaptive file grid (2–7 columns depending on viewport)
+- Toolbar labels hide on small screens, keeping icons visible
+
+### Performance
+- `React.memo` on FileItem to skip unnecessary re-renders
+- `useMemo` / `useCallback` throughout the Context provider
+- Reducer-based state management (predictable, single source of truth)
+
+### Accessibility
+- Skip-to-content link for keyboard users
+- ARIA tree / treeitem roles on the sidebar
+- `aria-label`, `aria-pressed`, `aria-current` on interactive elements
+- Native `<dialog>` element for delete confirmations
+- Visible focus rings via `focus-visible`
+- Keyboard shortcuts: Ctrl/Cmd + C/X/V, Delete, F2
+
+### Persistence
+- Full file system state is saved to `localStorage` and restored on page load
+
+## Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| Framework | Next.js 16 (App Router) |
+| Language | TypeScript |
+| Styling | Tailwind CSS v4 |
+| State | React Context API + useReducer |
+| Icons | lucide-react |
+| IDs | uuid |
+
+## Project Structure
+
+```
+src/
+├── app/
+│   ├── globals.css          # Tailwind imports + utility styles
+│   ├── layout.tsx           # Root layout with FileSystemProvider
+│   └── page.tsx             # Main page composing all components
+├── components/
+│   ├── Breadcrumbs.tsx      # Path breadcrumb navigation
+│   ├── ConfirmDialog.tsx    # Reusable native dialog confirmation
+│   ├── FileEditor.tsx       # Side panel file content editor
+│   ├── FileGrid.tsx         # Responsive grid of files/folders
+│   ├── FileItem.tsx         # Individual file/folder card + context menu
+│   ├── Sidebar.tsx          # Folder tree navigation
+│   ├── StatusBar.tsx        # Bottom bar with counts + clipboard info
+│   └── Toolbar.tsx          # Action buttons + inline create input
+├── context/
+│   └── FileSystemContext.tsx # Global state: reducer, provider, hooks
+├── hooks/
+│   └── useKeyboardShortcuts.ts  # Global keyboard shortcut handler
+└── types/
+    └── index.ts             # FSNode, FileSystemState, FSAction types
+```
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+# Install dependencies
+npm install
+
+# Start development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+## Deploy to Vercel
 
-To learn more about Next.js, take a look at the following resources:
+The easiest way to deploy:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+# Login to Vercel (one-time)
+vercel login
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Deploy to production
+vercel --prod
+```
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Or push to a GitHub repo and import it at [vercel.com/new](https://vercel.com/new) — Vercel auto-detects Next.js and deploys with zero configuration.
