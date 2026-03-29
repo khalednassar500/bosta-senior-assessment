@@ -88,24 +88,3 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-## Build
-
-```bash
-npm run build
-npm start
-```
-
-## Deploy to Vercel
-
-The easiest way to deploy:
-
-```bash
-# Login to Vercel (one-time)
-vercel login
-
-# Deploy to production
-vercel --prod
-```
-
-Or push to a GitHub repo and import it at [vercel.com/new](https://vercel.com/new) — Vercel auto-detects Next.js and deploys with zero configuration.
